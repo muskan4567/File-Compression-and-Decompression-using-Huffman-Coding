@@ -1,0 +1,21 @@
+The process consists of two parts:-
+  a) Compression of file:- 
+  For compressing of file the algorithm is given below:-
+ . User should provide the path of the file for compressing it.
+ . Finding frequency of all the characters  present in the file and store them in a “DICTIONARY”where key is the “character” and value is the frequency of that character.
+.Now lets create a “min-heap” and push the “character and its frequency” from the dictionary. I will push these character  and frequency  in form of a node where each node is acting as a root of separate tree.
+. Now I will create a “huffman-tree”,huffman  tree is created after popping two characters from min-heap having lowest frequency.First we will add both the frequency,and push it in the huffman  tree with empty key.The left of that node contains the first character we popped from min-heap and right of that node contains the second character we popped from min-heap.And we will push this node having sum of frequency in the min-heap.
+The process of making huffman tree is continued till min-heap is left with more than one node.
+. Next step is the construction of binary code for every character present in the binary tree.We will start from the root,for left subtree we will keep adding “0” in our string,and for right subtree we will keep adding “1” in our string and whenever we will find a character,we will push that character and the string of 0’s and 1’s till that point in a dictionary.That string will be the constructed code for that character.
+. Next step is to construct encoded text,we will append the code of each character formed in previous step into a new string called encoded text.
+. Now the encoded text will be converted into bytes with the help of padding,for converting into bytes we have to take the binary bits from encoded text in a slot of 8-8 bits,so if the last slot is facing lack of bits than padding is helpful,we will pad “0’s” in that slot.That’s why padding is helpful.
+.Finally we will convert the padded text into bytes,which is nothing but the compressed file in form of hexadecimal bytes.
+  
+  b) Decompression of file:- 
+  The idea of file decompression is simple,but it takes some thought to read the compressed file in detail,which is reflected in the statistics of  newline characters.The following is the decompression of the file:-
+. Read the compressed file.
+. Convert the bytes into binary bits.
+. Remove padding and reconstruct the encoded text or removed padded text.
+. Then we have to create a reverse dictionary where the key is constructed code and value is the respective character,we can reverse the dictionary using the dictionary we have created during compression of file.
+. After creating reverse dictionary,we will start iterating the encoded text,and wherever we will find a slot of bits matching with any key of dictionary we will replace that slot with the value of key or can create any other string for that.
+. In this way we got the decompressed file. 
